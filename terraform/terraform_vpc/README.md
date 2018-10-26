@@ -1,9 +1,6 @@
 # Overview
-WARNING:  LAUNCHING THIS WILL COST YOU MONEY
 
 This is a demo of using Terraform (https://terraform.io) to provision a sample AWS architecture.  Using this will cost you money.
-
-WARNING:  LAUNCHING THIS WILL COST YOU MONEY
 
 # Before You Begin
 If you haven't already configured the AWS CLI, or another SDK, on the machine where you will be running Terraform you should follow these instructions to setup the AWS CLI and create a credential profile which Terraform will use for authentication:  
