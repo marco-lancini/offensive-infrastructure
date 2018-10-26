@@ -1,0 +1,18 @@
+version: '2'
+
+services:
+    web:
+        build: web/
+        ports:
+            - "5000:5000"
+        # The volumes key mounts the project directory on the host to /code inside the container,
+        # allowing you to modify the code on the fly, without having to rebuild the image
+        volumes:
+            - ./web:/code
+        stdin_open: true
+        tty: true
+        depends_on:
+            - redis
+    
+    redis:
+        image: "redis:alpine"

@@ -1,0 +1,54 @@
+version: '2'
+services:
+    # ----- DATABASE
+    postgres:
+        container_name: clair_postgres
+        image: postgres:latest
+        restart: unless-stopped
+        environment:
+            POSTGRES_PASSWORD: password
+
+    cve:
+        container_name: clair_cve
+        image: postgres:latest
+        restart: on-failure
+        depends_on:
+            - postgres
+        links:
+            - postgres:clair_postgres
+        volumes:
+            - ./clair_config:/config
+        # https://gist.githubusercontent.com/BenHall/34ae4e6129d81f871e353c63b6a869a7/raw/5818fba954b0b00352d07771fabab6b9daba5510/clair.sql
+        command: bash -c "PGPASSWORD=password psql -h clair_postgres -U postgres < /config/clair.sql"
+
+
+    # ----- CLAIR
+    clair:
+        container_name: clair_clair
+        image: quay.io/coreos/clair:v2.0.1
+        restart: on-failure
+        depends_on:
+            - postgres
+            - cve
+        ports:
+            - "6060-6061:6060-6061"
+        links:
+            - postgres
+        volumes:
+            - /tmp:/tmp
+            - ./clair_config:/config
+        command: [-config, /config/config.yaml]
+
+
+    # ----- KLAR
+    klar:
+        container_name: clair_klar
+        build: ./klar/
+        depends_on:
+            - postgres
+            - clair
+        links:
+            - clair
+        environment:
+            CLAIR_ADDR: http://clair:6060
+            JSON_OUTPUT: "false"
