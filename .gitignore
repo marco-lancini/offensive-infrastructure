@@ -7,3 +7,7 @@
 
 # .tfvars files
 *.tfvars
+
+# Temp files
+.DS_Store
+*.pyc
