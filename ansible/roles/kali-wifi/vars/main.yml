@@ -1,0 +1,22 @@
+---
+tools_dir: /opt/wifi
+
+kali_make_dirs:
+  - "/opt/wifi"
+  
+kali_git_repositories:
+  # Rogue AP for handshakes without a AP
+  - repo: https://github.com/dxa4481/WPA2-HalfHandshake-Crack.git
+    dest: wpa2-halfhandshake-crack
+  # Auto WPS tool
+  - repo: https://github.com/SilentGhostX/HT-WPS-Breaker.git
+    dest: ht-wps-breaker
+  # On-the-fly WEP/WPA2 decrypter
+  - repo: https://github.com/mfontanini/dot11decrypt.git
+    dest: "dot11decrypt"
+  # Rogue AP for WPA-Enterprise
+  - repo: https://github.com/NerdyProjects/hostapd-wpe-extended.git
+    dest: "hostapd-wpe-extended/"
+  # Automated Wi-Fi phishing
+  - repo: https://github.com/sophron/wifiphisher.git
+    dest: "wifiphisher"

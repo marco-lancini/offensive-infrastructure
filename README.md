@@ -5,6 +5,26 @@ This repository will host the supporting code for the "[Offensive Infrastructure
 In the meantime, it hosts Ansible, Docker, and Terraform templates I'm currently using.
 
 
+
+
+## ANSIBLE
+
+| Role              | Description |
+| ----              | ----------- |
+| `docker`          | Install docker      |
+| `golang`          | Install golang      |
+| `kali-cloud`      | Install tools to perform cloud assessments (AWS, Azure, GCP) |
+| `kali-metasploit` | 3. Install MSF, configure Postgres, setup msfdb and Armitage |
+| `kali-os`         | 1. Update OS, setup locales, add users, config ufw and zsh |
+| `kali-red`        | For red teams (empire, dnscat2, etc.) |
+| `kali-sw`         | 2. Install basic maintenance, dev, and pt tools |
+| `kali-wifi`       | Wi-Fi pentesting tools     |
+| `mobile-android`  | Android tools              |
+| `mobile-ios`      | iOS tools                  |
+| `nginx`           | Fully configured nginx     |
+| `sublimetext`     | Install sublimetext        |
+
+
 ## DOCKER
 
 | Folder                            | Description |
