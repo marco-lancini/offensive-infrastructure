@@ -258,6 +258,8 @@ kali_git_repositories:
     dest: "nmap-parse-output"
   - repo: https://github.com/leostat/rtfm.git
     dest: "rtfm"
+  - repo: https://github.com/CISOfy/lynis.git
+    dest: "lynis"
 
 
 kali_shortcuts:
