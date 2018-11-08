@@ -7,6 +7,7 @@ alias handler use exploit/multi/handler
 setg TimestampOutput true
 setg VERBOSE true
 
+setg AutoRunScript post/windows/manage/priv_migrate
 setg ExitOnSession false
 setg EnableStageEncoding true
 setg LHOST 0.0.0.0

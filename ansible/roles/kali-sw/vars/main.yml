@@ -46,6 +46,7 @@ kali_apt:
   - asciinema
   - openvpn 
   - xtightvncviewer
+  - tree
   # ---------- DEV TOOLS
   - git
   - emacs
