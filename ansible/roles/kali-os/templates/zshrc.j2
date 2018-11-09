@@ -104,8 +104,8 @@ alias renew='/etc/init.d/networking restart'
 alias emacs="emacs -nw"
 #alias cat='bat'
 alias wwwroot="cd /var/www/html/"
-alias ungit='find . -type d -name ".git" | while read dir ; do sh -c "cd $dir/../ && echo \"\nGIT STATUS IN $\
-{dir//\.git/}\" && git status -s" ; done'
+alias ungit='find . -type d -name ".git" | while read dir ; do sh -c "cd $dir/../ && echo \"\nGIT STATUS IN ${dir//\.\
+git/}\" && git status -s && git cherry -v" ; done'
 
 export PYTHONSTARTUP=/root/.pythonstartup
 export PIPENV_VENV_IN_PROJECT=true
