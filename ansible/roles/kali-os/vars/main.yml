@@ -49,6 +49,9 @@ kali_templates:
   - src: issue.ssh.j2
     dest: /etc/issue.ssh
     mode: "0644"
+  - src: ssh_config.j2
+    dest: /etc/
+    ode: "0644"
   - src: sshd_config.j2
     dest: /etc/ssh/sshd_config
     mode: "0644"
@@ -60,24 +63,3 @@ kali_bash:
   - gnome3.sh
   - thunar.sh
   - bash.sh
-
-
-# ----------------------------------------------------------------------------------------
-# SSH CONFIG
-# ----------------------------------------------------------------------------------------
-sshd_banner: /etc/issue.ssh
-sshd_ciphers: "chacha20-poly1305@openssh.com,aes256-gcm@openssh.com,aes128-gcm@openssh.com,aes256-ctr,aes192-ctr,aes128-ctr"
-sshd_gssapiauthentication: "no"
-sshd_hostkeyalgorithms: "ssh-ed25519-cert-v01@openssh.com,ssh-rsa-cert-v01@openssh.com,ssh-ed25519,ssh-rsa"
-sshd_kexalgorithms: "curve25519-sha256@libssh.org,diffie-hellman-group-exchange-sha256"
-sshd_moduli_remove:
-  - 1023
-  - 1535
-sshd_passwordauthentication: "yes"
-sshd_permitemptypasswords: "no"
-sshd_permitrootlogin: "yes"
-sshd_pubkeyauthentication: "yes"
-sshd_rsaauthentication: "yes"
-sshd_usedns: "no"
-sshd_usepam: "yes"
-sshd_x11forwarding: "no"
