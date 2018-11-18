@@ -6,27 +6,22 @@ eval col_orange='$FG[202]'
 eval col_yellow='$FG[190]'
 eval col_blue='$FG[110]'
 eval col_gold='$FG[100]'
-
 eval col_main='$FG[110]'
 eval col_secondary='$FG[100]'
 
 # Define prompts
-local user_host='[%n@%m]'
 local current_dir='%{$terminfo[bold]${col_main}%}%~%{$reset_color%}'
+local cur_ip="`ifconfig | grep 'inet'| grep -Ev '(127.0.0.1|inet6)' | head -1 | awk '{print $2}'`"
+local time="`date  +"%d-%b-%y %T"`"
+local user_host='%n@%m'
 
-PROMPT="%(?.${col_main}.%F{red})❯%f " # Display a red prompt char on failure
-RPROMPT='${time} %{${col_grey}%}${user_host}%{$reset_color%}'
-
+PREPROMPT='%{${col_orange}%}[${user_host} - ${cur_ip}] ${col_yellow}${time}%{$reset_color%}'
+PROMPT="${PREPROMPT}%(?.${col_main}.%F{red}) ❯%f " # Display a red prompt char on failure
 
 # Output additional information about paths, repos and user
 precmd() {
     print -P "\n${current_dir}  %{${col_secondary}%}$(git_prompt_info)%{$reset_color%}$(git_prompt_status)%{$reset_color%}$(git_prompt_ahead)"
 }
-
-# Local time, color coded by last return code
-time_enabled="%(?.%{${col_grey}%}.%{$fg[red]%})%*%{$reset_color%}"
-time_disabled="%{${col_grey}%}%*%{$reset_color%}"
-time=$time_enabled
 
 # GIT status
 ZSH_THEME_GIT_PROMPT_PREFIX=" ☁  "
