@@ -260,6 +260,8 @@ kali_git_repositories:
     dest: "rtfm"
   - repo: https://github.com/CISOfy/lynis.git
     dest: "lynis"
+  - repo: https://github.com/arthepsy/ssh-audit.git
+    dest: "ssh-audit"
 
 
 kali_shortcuts:
