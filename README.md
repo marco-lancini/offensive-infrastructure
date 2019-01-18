@@ -34,9 +34,10 @@ In the meantime, it hosts Ansible, Docker, and Terraform templates I'm currently
 | `docker_compose_flask`            | Flask setup  |
 | `docker_compose_nginx-proxy`      | Nginx-proxy setup |
 | `docker_compose_wekan-bookstack`  | Local setup for Wekan and Bookstack |
-| `docker_go_dev`                   | Development image for Golang. Published on [Docker Cloud](https://cloud.docker.com/swarm/marcolancini/repository/list)  |
-| `docker_kali`                     | Image for kali. Published on [Docker Cloud](https://cloud.docker.com/swarm/marcolancini/repository/list)  |
-| `docker_python_dev`               | Development image for Python2/3. Published on [Docker Cloud](https://cloud.docker.com/swarm/marcolancini/repository/list)  |
+| `docker_go_dev`                   | Development image for Golang. Published on [Docker Hub](https://cloud.docker.com/u/marcolancini/repository/list)  |
+| `docker_kali`                     | Image for kali. Published on [Docker Hub](https://cloud.docker.com/u/marcolancini/repository/list) |
+| `docker_python_dev`               | Development image for Python2/3. Published on [Docker Hub](https://cloud.docker.com/u/marcolancini/repository/list) |
+| `docker_nomad`                    | Image for Nomad. Published on [Docker Hub](https://cloud.docker.com/u/marcolancini/repository/list)  |
 | `docker_vault`                    | [Docker + Consul + Vault](https://github.com/marco-lancini/docker_vault) |
 
 
