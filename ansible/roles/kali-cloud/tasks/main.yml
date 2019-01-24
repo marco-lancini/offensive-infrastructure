@@ -144,6 +144,10 @@
   when: git_done is success
   command: chdir="{{ tools_dir }}/cloudsploit/" npm install
 
+- name: Install Google Cloud SDK
+  when: tars_done is success
+  command: "{{ tools_dir }}/google-cloud-sdk/install.sh"
+
 
 # ----------------------------------------------------------------------------------------
 # CLEANUP
