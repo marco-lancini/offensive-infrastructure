@@ -1,6 +1,6 @@
 # Offensive Infrastructure: the HashiStack
 
-This folders contains code related to [Part 2](https://www.marcolancini.it/2018/blog-offensive-infrastructure-hashistack/) of the [Offensive Infrastructure with Modern Technologies](https://www.marcolancini.it/offensive-infrastructure/) Series.
+This folders contains code related to [Part 2](https://www.marcolancini.it/2019/blog-offensive-infrastructure-hashistack/) of the [Offensive Infrastructure with Modern Technologies](https://www.marcolancini.it/offensive-infrastructure/) Series.
 
 
 ## Environment Setup
