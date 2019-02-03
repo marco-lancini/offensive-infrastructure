@@ -1,0 +1,4 @@
+.vagrant
+ansible/roles/*
+*.retry
+ansible_vault_pwd.txt

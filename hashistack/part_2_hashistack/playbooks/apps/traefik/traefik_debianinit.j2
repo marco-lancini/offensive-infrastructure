@@ -1,0 +1,96 @@
+#!/bin/sh
+
+PATH="/usr/sbin:/usr/bin:/sbin:/bin"
+DESC="Consul service discovery framework"
+NAME="traefik"
+DAEMON="/usr/bin/${NAME}"
+PIDFILE="/var/run/traefik/${NAME}.pid"
+DAEMON_ARGS="--configFile=/etc/traefik.toml"
+USER="root"
+SCRIPTNAME=/etc/init.d/"${NAME}"
+
+# Exit if Consul is not installed
+[ -x "${DAEMON}" ] || exit 0
+
+# Read default variables file
+[ -r /etc/default/"${NAME}" ] && . /etc/default/"${NAME}"
+
+# Source rcS variables
+[ -f /etc/default/rcS ] && . /etc/default/rcS
+
+# Source LSB functions
+. /lib/lsb/init-functions
+
+# Make sure PID dir exists
+mkrundir() {
+        [ ! -d /var/run/traefik ] && mkdir -p /var/run/traefik
+        chown root /var/run/traefik
+}
+
+# Start the Traefik service
+do_start() {
+    echo "Starting Traefik and backgrounding"
+    mkrundir
+    start-stop-daemon --start --quiet --pidfile "${PIDFILE}" --exec "${DAEMON}" --chuid "${USER}" --background --make-pidfile --test > /dev/null \
+        || return 1
+    start-stop-daemon --start --quiet --pidfile "${PIDFILE}" --exec "${DAEMON}" --chuid "${USER}" --background --make-pidfile -- \
+        ${DAEMON_ARGS} \
+        || return 2
+
+    return 0
+}
+
+# Stop the Traefik service
+do_stop() {
+    "${DAEMON}" leave
+    start-stop-daemon --stop --quiet --retry=TERM/30/KILL/5 --pidfile "${PIDFILE}" --name "${NAME}"
+    RETVAL="$?"
+    [ "${RETVAL}" = 2 ] && return 2
+    start-stop-daemon --stop --quiet --oknodo --retry=0/30/KILL/5 --exec "${DAEMON}"
+    [ "$?" = 2 ] && return 2
+    rm -f "${PIDFILE}"
+    return "${RETVAL}"
+}
+
+case "$1" in
+  start)
+    [ "${VERBOSE}" != no ] && log_daemon_msg "Starting ${DESC}" "${NAME}"
+    do_start
+    case "$?" in
+        0|1) [ "${VERBOSE}" != no ] && log_end_msg 0 ;;
+        2) [ "${VERBOSE}" != no ] && log_end_msg 1 ;;
+    esac
+    ;;
+  stop)
+    [ "${VERBOSE}" != no ] && log_daemon_msg "Stopping ${DESC}" "${NAME}"
+    do_stop
+    case "$?" in
+        0|1) [ "${VERBOSE}" != no ] && log_end_msg 0 ;;
+        2) [ "${VERBOSE}" != no ] && log_end_msg 1 ;;
+    esac
+    ;;
+  restart)
+    log_daemon_msg "Restarting ${DESC}" "${NAME}"
+    do_stop
+    case "$?" in
+      0|1)
+        do_start
+        case "$?" in
+            0) log_end_msg 0 ;;
+            1) log_end_msg 1 ;;
+            *) log_end_msg 1 ;;
+        esac
+        ;;
+      *)
+        # Stop failed
+        log_end_msg 1
+        ;;
+    esac
+    ;;
+  *)
+    echo "Usage: ${SCRIPTNAME} {start|stop|restart}" >&2
+    exit 3
+    ;;
+esac
+
+:

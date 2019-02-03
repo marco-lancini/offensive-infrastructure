@@ -1,0 +1,13 @@
+- hosts: nomad_deployer
+  become: true
+  become_user: root
+  tasks:
+  - name: Deploy Simple Server
+    block:
+      - name: Copy Nomad Job
+        copy:
+          src: /playbooks/apps/simpleserver.nomad
+          dest: /tmp/simpleserver.nomad
+      - name: Run Nomad Job
+        command: nomad job run /tmp/simpleserver.nomad
+     

@@ -1,0 +1,112 @@
+- hosts: consul_instances
+  become: true
+  become_user: root
+  vars:
+    consul_servers: "\
+      {% set _consul_servers = [] %}\
+      {% for host in groups['consul_instances'] %}\
+        {% set _consul_node_role = hostvars[host]['consul_node_role'] | default('client', true) %}\
+        {% if ( _consul_node_role == 'server' or _consul_node_role == 'bootstrap') %}\
+          {% if _consul_servers.append(host) %}{% endif %}\
+        {% endif %}\
+      {% endfor %}\
+      {{ _consul_servers }}"
+    consul_clients: "\
+      {% set _consul_clients = [] %}\
+      {% for host in groups['consul_instances'] %}\
+        {% set _consul_node_role = hostvars[host]['consul_node_role'] | default('client', true) %}\
+        {% if ( _consul_node_role == 'client') %}\
+          {% if _consul_clients.append(host) %}{% endif %}\
+        {% endif %}\
+      {% endfor %}\
+      {{ _consul_clients }}"
+  tasks:
+  - name: Restart Consul Servers
+    register: consul_servers_done
+    service:
+      name: consul
+      state: restarted
+    when:
+      - inventory_hostname in consul_servers
+  - name: Restart Consul Clients
+    register: consul_clients_done
+    service:
+      name: consul
+      state: restarted
+    when:
+      - inventory_hostname in consul_clients
+      - consul_servers_done is success
+  - name: Restart dnsmasq
+    service:
+      name: dnsmasq
+      state: restarted
+    when:
+      - consul_clients_done is success
+  
+
+- hosts: vault_instances
+  become: true
+  become_user: root
+  ignore_errors: yes
+  tasks:
+  - name: Restart Vault Servers
+    service:
+      name: vault
+      state: restarted
+    when:
+      - consul_servers_done is success
+
+
+- hosts: docker_instances
+  become: true
+  become_user: root
+  ignore_errors: yes
+  vars:
+    nomad_servers: "\
+      {% set _nomad_servers = [] %}\
+      {% for host in groups['docker_instances'] %}\
+        {% set _nomad_node_role = hostvars[host]['nomad_node_role'] | default('client', true) %}\
+        {% if ( _nomad_node_role == 'server' or _nomad_node_role == 'both') %}\
+          {% if _nomad_servers.append(host) %}{% endif %}\
+        {% endif %}\
+      {% endfor %}\
+      {{ _nomad_servers }}"
+    nomad_clients: "\
+      {% set _nomad_clients = [] %}\
+      {% for host in groups['docker_instances'] %}\
+        {% set _nomad_node_role = hostvars[host]['nomad_node_role'] | default('client', true) %}\
+        {% if ( _nomad_node_role == 'client') %}\
+          {% if _nomad_clients.append(host) %}{% endif %}\
+        {% endif %}\
+      {% endfor %}\
+      {{ _nomad_clients }}"
+  tasks:
+  - name: Restart Nomad Servers
+    register: nomad_servers_done
+    service:
+      name: nomad
+      state: restarted
+    when:
+      - consul_servers_done is success
+      - inventory_hostname in nomad_servers
+  - name: Restart Nomad Clients
+    register: nomad_clients_done
+    service:
+      name: nomad
+      state: restarted
+    when:
+      - inventory_hostname in nomad_clients
+      - nomad_servers_done is success
+
+
+- hosts: traefik_instances
+  become: true
+  become_user: root
+  ignore_errors: yes
+  tasks:
+  - name: Restart Traefik
+    service:
+      name: traefik
+      state: restarted
+    when:
+      - nomad_clients_done is success

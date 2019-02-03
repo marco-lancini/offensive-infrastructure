@@ -1,0 +1,19 @@
+server01.consul ansible_host=192.168.0.111
+server02.consul ansible_host=192.168.0.112
+
+[consul_instances]
+server01.consul consul_node_role=bootstrap
+server02.consul consul_node_role=client
+
+[vault_instances]
+server01.consul
+
+[docker_instances]
+server01.consul nomad_node_role=both
+server02.consul nomad_node_role=client
+
+[traefik_instances]
+server01.consul
+
+[nomad_deployer]
+server02.consul

@@ -1,0 +1,83 @@
+- hosts: consul_instances
+  become: true
+  become_user: root
+  roles:
+      - {role: brianshumate.consul, tags: ['consul']}
+  vars:
+      # VARIABLES TO EDIT
+      consul_iface: eth1
+      consul_datacenter: "lab"
+      consul_acl_datacenter: "lab"
+      consul_domain: "consul"
+      consul_recursors: ['1.1.1.1', '1.0.0.1']
+      # CONSTANTS
+      consul_client_address: "0.0.0.0" 
+      consul_dnsmasq_enable: yes
+      consul_acl_master_token_display: yes
+
+
+- hosts: vault_instances
+  become: true
+  become_user: root
+  roles:
+      - {role: brianshumate.vault, tags: ['vault']}
+  vars:
+      # VARIABLES TO EDIT
+      vault_datacenter: "lab"
+      vault_domain: "consul"
+      # CONSTANTS
+      vault_ui: yes
+      vault_cluster_disable: yes
+
+
+- hosts: docker_instances
+  become: true
+  become_user: root
+  roles:
+      - {role: geerlingguy.docker, tags: ['docker']}
+      - {role: brianshumate.nomad, tags: ['docker', 'nomad']}
+  vars:
+      # VARIABLES TO EDIT
+      nomad_datacenter: "lab"
+      nomad_domain: "consul"
+      nomad_iface: eth1
+      nomad_network_interface: eth1
+      nomad_servers: ['server01.node.lab.consul:4647']
+      # CONSTANTS
+      nomad_consul_address: http://127.0.0.1:8500
+      nomad_vault_address: http://active.vault.service.lab.consul:8200
+      nomad_bind_address: "0.0.0.0"
+      nomad_use_consul: yes
+      nomad_vault_enabled: yes
+      nomad_options: {  'driver.raw_exec.enable': '1' }
+      nomad_network_speed: 10
+      nomad_bootstrap_expect: 1
+      nomad_docker_enable: yes
+      permanent: yes
+      nomad_ports_http: 4646
+      nomad_ports_rpc: 4647
+      nomad_ports_serf: 4648
+
+
+- hosts: traefik_instances
+  become: true
+  become_user: root
+  ignore_errors: True
+  post_tasks:
+    - name: Copy Traefik Config File
+      template:
+        src: /playbooks/apps/traefik/traefik.toml
+        dest: /etc/traefik.toml
+    - name: Copy Traefik init script
+      template:
+        src: /playbooks/apps/traefik/traefik_debianinit.j2
+        dest: /etc/init.d/traefik
+        owner: root
+        group: root
+        mode: 0755
+  roles:
+       - {role: kibatic.traefik, tags: ['docker', 'nomad', 'traefik']}
+  vars:
+      # VARIABLES TO EDIT
+      traefik_bind_ip: "192.168.0.111"
+      traefik_consul_master: "consul.service.lab.consul"
