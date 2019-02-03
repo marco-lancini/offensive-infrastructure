@@ -1,0 +1,34 @@
+version: '2'
+
+services:
+    # ------------------------------------------------------------------------------------
+    # CONSUL CLIENT
+    # ------------------------------------------------------------------------------------
+    consul_client:
+        container_name: consul_client
+        image: consul:latest
+        restart: always
+        network_mode: "host"
+        dns: ${MASTER_IP}
+        env_file: 
+            - .env
+        volumes:
+            - /docker/data/consul/:/consul/data/
+            - ./config/:/consul/config/
+
+    # ------------------------------------------------------------------------------------
+    # REGISTRATOR
+    # ------------------------------------------------------------------------------------
+    registrator:
+        container_name: registrator
+        image: gliderlabs/registrator:latest
+        restart: always
+        network_mode: "host"
+        env_file: 
+            - .env
+        volumes:
+            - /var/run/docker.sock:/tmp/docker.sock
+        depends_on:
+            - consul_client
+        dns: ${MASTER_IP}
+        command: consul://${LOCAL_IP}:8500

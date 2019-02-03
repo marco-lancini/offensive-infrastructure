@@ -1,0 +1,39 @@
+version: '2'
+
+services:
+    # ------------------------------------------------------------------------------------
+    # CONSUL CLIENT
+    # ------------------------------------------------------------------------------------
+    consul_client:
+        container_name: consul_client
+        image: consul:latest
+        restart: always
+        network_mode: "host"
+        dns: ${MASTER_IP}
+        env_file: 
+            - .env
+        volumes:
+            - /docker/data/consul/:/consul/data/
+            - ./config/:/consul/config/
+
+    # ------------------------------------------------------------------------------------
+    # REGISTRATOR
+    # ------------------------------------------------------------------------------------
+    registrator:
+        container_name: registrator
+        image: gliderlabs/registrator:latest
+        restart: always
+        network_mode: "host"
+        env_file: 
+            - .env
+        environment:
+            - CONSUL_CACERT=/consul/config/ssl/consul-ca.pem
+            - CONSUL_TLSCERT=/consul/config/ssl/server.pem
+            - CONSUL_TLSKEY=/consul/config/ssl/server-key.pem 
+        volumes:
+            - /var/run/docker.sock:/tmp/docker.sock
+            - ./config/ssl/:/consul/config/ssl/:ro
+        depends_on:
+            - consul_server
+        dns: ${LOCAL_IP}
+        command: consul-tls://TESTING-NODE1.node.consul:8500

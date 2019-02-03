@@ -1,0 +1,7 @@
+{
+    "log_level": "INFO",
+    "server": false,
+    "client_addr":"0.0.0.0",
+    "bind_addr":"10.10.100.12",
+    "retry_join": ["TESTING-NODE1.node.consul"]
+}

@@ -1,0 +1,5 @@
+{
+    "acl_agent_token": "CD524DDA-1A52-2F09-4FD0-6C90674884A2",
+    "acl_datacenter":"dc1",
+    "acl_down_policy":"extend-cache"
+}

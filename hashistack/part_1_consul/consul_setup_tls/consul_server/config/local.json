@@ -1,0 +1,18 @@
+{
+    "log_level": "INFO",
+    "server": true,
+    "ui": true,
+    "bootstrap": true,
+    "client_addr":"0.0.0.0",
+    "bind_addr":"10.10.100.11",
+    "disable_update_check": true,
+    "ca_file": "/consul/config/ssl/consul-ca.pem",
+    "cert_file": "/consul/config/ssl/server.pem",
+    "key_file": "/consul/config/ssl/server-key.pem",
+    "verify_outgoing": true,
+    "verify_incoming": true,
+    "ports": {
+        "http": 8501,
+        "https": 8500
+    }
+}

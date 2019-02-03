@@ -1,0 +1,61 @@
+version: '2'
+
+services:
+    # ------------------------------------------------------------------------------------
+    # CONSUL SERVER
+    # ------------------------------------------------------------------------------------
+    consul_server:
+        container_name: consul_server
+        image: consul:latest
+        restart: always
+        network_mode: "host"
+        volumes:
+            - /docker/data/consul/:/consul/data/
+            - ./config/:/consul/config/
+        
+    # ------------------------------------------------------------------------------------
+    # REGISTRATOR
+    # ------------------------------------------------------------------------------------
+    registrator:
+        container_name: registrator
+        image: gliderlabs/registrator:latest
+        restart: always
+        network_mode: "host"
+        env_file: 
+            - .env
+        environment:
+            - CONSUL_CACERT=/consul/config/ssl/consul-ca.pem
+            - CONSUL_TLSCERT=/consul/config/ssl/server.pem
+            - CONSUL_TLSKEY=/consul/config/ssl/server-key.pem 
+        volumes:
+            - /var/run/docker.sock:/tmp/docker.sock
+            - ./config/ssl/:/consul/config/ssl/:ro
+        depends_on:
+            - consul_server
+        dns: ${LOCAL_IP}
+        command: consul-tls://TESTING-NODE1.node.consul:8500
+
+    # ------------------------------------------------------------------------------------
+    # REGISTRATOR DEV
+    # ------------------------------------------------------------------------------------
+    # registrator:
+    #     container_name: registrator
+    #     #image: registrator:dev
+    #     build:
+    #         context: .
+    #         dockerfile: Dockerfile-registrator
+    #     restart: always
+    #     network_mode: "host"
+    #     env_file: 
+    #         - .env
+    #     environment:
+    #         - CONSUL_CACERT=/consul/config/ssl/consul-ca.pem
+    #         - CONSUL_TLSCERT=/consul/config/ssl/server.pem
+    #         - CONSUL_TLSKEY=/consul/config/ssl/server-key.pem 
+    #     volumes:
+    #         - /var/run/docker.sock:/tmp/docker.sock
+    #         - ./config/ssl/:/consul/config/ssl/:ro
+    #     depends_on:
+    #         - consul_server
+    #     dns: ${LOCAL_IP}
+    #     command: /bin/registrator consul-tls://TESTING-NODE1.node.consul:8500
