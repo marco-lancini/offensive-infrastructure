@@ -23,6 +23,7 @@
       - {role: brianshumate.vault, tags: ['vault']}
   vars:
       # VARIABLES TO EDIT
+      vault_iface: eth1
       vault_datacenter: "lab"
       vault_domain: "consul"
       # CONSTANTS
