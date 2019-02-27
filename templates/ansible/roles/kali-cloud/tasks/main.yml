@@ -146,7 +146,17 @@
 
 - name: Install Google Cloud SDK
   when: tars_done is success
+  register: google_sdk
   command: "{{ tools_dir }}/google-cloud-sdk/install.sh"
+
+- name: Install kubectl
+  when: google_sdk is success
+  command: |
+    gcloud components install kubectl
+    set -x; cd "$(mktemp -d)" && \
+        curl -fsSLO "https://storage.googleapis.com/krew/v{{ version_krew }}/krew.{tar.gz,yaml}" && \
+        tar zxvf krew.tar.gz && \
+        ./krew-"$(uname | tr '[:upper:]' '[:lower:]')_amd64" install --manifest=krew.yaml --archive=krew.tar.gz
 
 
 # ----------------------------------------------------------------------------------------

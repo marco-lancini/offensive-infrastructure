@@ -1,6 +1,9 @@
 ---
 tools_dir: /opt/cloud
 
+version_gcloud: "231.0.0"
+version_krew: "0.2.1"
+
 kali_make_dirs:
   - "/opt/cloud"
 
@@ -117,7 +120,7 @@ kali_install_python2:
 #     - /tmp/bat.deb
 
 kali_tars:
-  - src: https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-231.0.0-linux-x86_64.tar.gz
+  - src: https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-{{ version_gcloud }}-linux-x86_64.tar.gz
     dest: "{{ tools_dir }}/"
 
 # kali_config:

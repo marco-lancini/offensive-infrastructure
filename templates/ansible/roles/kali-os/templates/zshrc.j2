@@ -107,6 +107,7 @@ alias wwwroot="cd /var/www/html/"
 alias ungit='find . -type d -name ".git" | while read dir ; do sh -c "cd $dir/../ && echo \"\nGIT STATUS IN ${dir//\.\
 git/}\" && git status -s && git cherry -v" ; done'
 
+export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 export PYTHONSTARTUP=/root/.pythonstartup
 export PIPENV_VENV_IN_PROJECT=true
 
