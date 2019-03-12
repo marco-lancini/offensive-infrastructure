@@ -87,12 +87,15 @@ kali_git_repositories:
     dest: hayat
   - repo: https://github.com/marcin-kolda/gcp-iam-collector.git
     dest: gcp-iam-collector
+  - repo: https://github.com/RhinoSecurityLabs/GCPBucketBrute.git
+    dest: gcpbucketbrute
 
 kali_install_python3:
   - cloudmapper
   - pacu
   - weirdAAL
   - scoutsuite
+  - gcpbucketbrute
 
 kali_install_python2:
   - cs-suite
