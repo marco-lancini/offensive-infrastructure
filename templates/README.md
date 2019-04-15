@@ -24,6 +24,7 @@ This folder contains some building blocks.
 
 | Folder                            | Description |
 | --------------------------------- | ----------- |
+| `docker_ansible_worker`           | Image for Ansible. Published on [Docker Hub](https://cloud.docker.com/u/marcolancini/repository/list) |
 | `docker_compose_clair`            | Spin up `Clair`, alongside `Postgres` and `Klar`, to scan Docker images for security vulnerabilities |
 | `docker_compose_django`           | Django setup with `Postgres` (database), `Redis` (cache), and `nginx` (proxy) |
 | `docker_compose_flask`            | Flask setup  |
