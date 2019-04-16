@@ -115,16 +115,20 @@ kali_install_python2:
 # kali_shortcuts:
 #   - prowler
 
-# kali_binary:
-#   - url: https://raw.githubusercontent.com/raesene/TestingScripts/master/snmpv3enum.rb
-#     dest: "{{ tools_dir }}/snmpv3enum/snmpv3enum.rb"
- 
+kali_binary:
+  - url: https://raw.githubusercontent.com/jonmosco/kube-ps1/master/kube-ps1.sh
+    dest: ~/.oh-my-zsh/custom/kube-ps1.sh
+  - url: https://raw.githubusercontent.com/JonathanSpeek/palenight-iterm2/master/palenight.itermcolors
+    dest: ~/.oh-my-zsh/custom/palenight.itermcolors
+
 # kali_deb:
 #     - /tmp/bat.deb
 
 kali_tars:
   - src: https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-sdk-{{ version_gcloud }}-linux-x86_64.tar.gz
     dest: "{{ tools_dir }}/"
+  - src: https://storage.googleapis.com/krew/v0.2.1/krew.tar.gz
+    dest: /tmp/krew/
 
 # kali_config:
 #   - src: "terminator"

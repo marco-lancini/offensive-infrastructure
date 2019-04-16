@@ -107,8 +107,14 @@ alias wwwroot="cd /var/www/html/"
 alias ungit='find . -type d -name ".git" | while read dir ; do sh -c "cd $dir/../ && echo \"\nGIT STATUS IN ${dir//\.\
 git/}\" && git status -s && git cherry -v" ; done'
 
+# Python config
 export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 export PYTHONSTARTUP=/root/.pythonstartup
 export PIPENV_VENV_IN_PROJECT=true
 
+# Kubernetes
+source <(kubectl completion zsh)
+source ~/.oh-my-zsh/custom/kube-ps1.sh
+
+# Aliases
 source ~/.bash_aliases

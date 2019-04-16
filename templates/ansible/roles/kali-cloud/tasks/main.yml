@@ -158,9 +158,17 @@
         tar zxvf krew.tar.gz && \
         ./krew-"$(uname | tr '[:upper:]' '[:lower:]')_amd64" install --manifest=krew.yaml --archive=krew.tar.gz
 
+- name: Install krew
+  when: tars_done is success
+  command: chdir="/tmp/krew/ " ./krew-"$(uname | tr '[:upper:]' '[:lower:]')_amd64" install
+
 
 # ----------------------------------------------------------------------------------------
 # CLEANUP
 # ----------------------------------------------------------------------------------------
 - name: Clean the system
   script: ../files/cleanup.sh
+
+- debug: msg="{{ item }}"
+  with_items:
+    - "Install iTerm color scheme: ~/.oh-my-zsh/custom/palenight.itermcolors"

@@ -20,7 +20,7 @@ PROMPT="${PREPROMPT}%(?.${col_main}.%F{red}) ❯%f " # Display a red prompt char
 
 # Output additional information about paths, repos and user
 precmd() {
-    print -P "\n${current_dir}  %{${col_secondary}%}$(git_prompt_info)%{$reset_color%}$(git_prompt_status)%{$reset_color%}$(git_prompt_ahead)"
+    print -P "\n${current_dir}  %{${col_secondary}%}$(kube_ps1) %{${col_third}%}$(git_prompt_info)%{$reset_color%}$(git_prompt_status)%{$reset_color%}$(git_prompt_ahead)"
 }
 
 # GIT status
