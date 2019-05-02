@@ -43,10 +43,11 @@ kali_gem:
 kali_go:
   - github.com/michenriksen/gitrob
   - github.com/zricethezav/gitleaks
+  - github.com/Shopify/kubeaudit
 
-# kali_go_build:
-#   - git_name: gobuster
-#     go_folder: /root/go/src/github.com/OJ/gobuster/
+kali_go_build:
+  - git_name: kubeaudit
+    go_folder: /root/go/src/github.com/Shopify/kubeaudit/
 
 kali_git_repositories:
   - repo: https://github.com/cloudsploit/scans.git
