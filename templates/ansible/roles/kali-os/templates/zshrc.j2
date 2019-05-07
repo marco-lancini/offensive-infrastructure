@@ -103,6 +103,7 @@ alias ee="exit"
 alias renew='/etc/init.d/networking restart'
 alias emacs="emacs -nw"
 #alias cat='bat'
+alias bat='bat --theme TwoDark'
 alias wwwroot="cd /var/www/html/"
 alias ungit='find . -type d -name ".git" | while read dir ; do sh -c "cd $dir/../ && echo \"\nGIT STATUS IN ${dir//\.\
 git/}\" && git status -s && git cherry -v" ; done'
@@ -113,8 +114,17 @@ export PYTHONSTARTUP=/root/.pythonstartup
 export PIPENV_VENV_IN_PROJECT=true
 
 # Kubernetes
+alias k="kubectl"
 source <(kubectl completion zsh)
 source ~/.oh-my-zsh/custom/kube-ps1.sh
+export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
+
 
 # Aliases
 source ~/.bash_aliases
+
+# Docker compose
+alias wekan_up="docker-compose -f /Users/x/Documents/Software/wekan_bookstack/_docker_compose_wekan-bookstack/docker-compose.yml up"
+alias wekan_down="docker-compose -f /Users/x/Documents/Software/wekan_bookstack/_docker_compose_wekan-bookstack/docker-compose.yml down"
+alias collab_up="docker-compose -f /Users/x/Documents/Software/docker_compose_pad-whiteboard/docker-compose.yml up"
+alias collab_down="docker-compose -f /Users/x/Documents/Software/docker_compose_pad-whiteboard/docker-compose.yml down"

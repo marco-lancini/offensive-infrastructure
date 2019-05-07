@@ -1,0 +1,23 @@
+version: '2'
+
+services:
+  # ------------------------------------------------------------------------------------
+  # PAD - https://github.com/petercunha/Pad
+  # ------------------------------------------------------------------------------------
+  pad:
+    # 
+    container_name: collab_pad
+    restart: on-failure
+    build: pad/
+    ports:
+      - 3001:3000
+
+  # ------------------------------------------------------------------------------------
+  # WHITEBOARD - https://github.com/cracker0dks/whiteboard
+  # ------------------------------------------------------------------------------------
+  whiteboard:
+    container_name: collab_whiteboard
+    restart: on-failure
+    build: whiteboard/
+    ports: 
+      - 3002:8080
