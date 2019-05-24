@@ -44,6 +44,7 @@ kali_go:
   - github.com/michenriksen/gitrob
   - github.com/zricethezav/gitleaks
   - github.com/Shopify/kubeaudit
+  - github.com/sysdiglabs/kubectl-dig/cmd/kubectl-dig
 
 kali_go_build:
   - git_name: kubeaudit
