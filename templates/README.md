@@ -30,6 +30,7 @@ This folder contains some building blocks.
 | `docker_compose_flask`            | Flask setup  |
 | `docker_compose_nginx-proxy`      | Nginx-proxy setup |
 | `docker_compose_wekan-bookstack`  | Local setup for Wekan and Bookstack |
+| `docker_compose_wikijs`           | Local setup for WikiJS |
 | `docker_go_dev`                   | Development image for Golang. Published on [Docker Hub](https://cloud.docker.com/u/marcolancini/repository/list)  |
 | `docker_kali`                     | Image for kali. Published on [Docker Hub](https://cloud.docker.com/u/marcolancini/repository/list) |
 | `docker_nomad`                    | Image for Nomad. Published on [Docker Hub](https://cloud.docker.com/u/marcolancini/repository/list)  |

@@ -1,0 +1,26 @@
+version: "3"
+services:
+  # wikidb:
+  #   image: postgres:9-alpine
+  #   environment:
+  #     POSTGRES_DB: wiki
+  #     POSTGRES_PASSWORD: wikijsrocks
+  #     POSTGRES_USER: wikijs
+  #   logging:
+  #     driver: "none"
+  #   volumes:
+  #     - ./data/postgres_data:/var/lib/postgresql/data
+  #   expose:
+  #     - 5432
+
+  wikijs:
+    image: requarks/wiki:beta
+    # depends_on:
+    #   - wikidb
+    # links:
+    #   - wikidb
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./config.yml:/wiki/config.yml
+      - ./data/:/etc/wiki/db/
