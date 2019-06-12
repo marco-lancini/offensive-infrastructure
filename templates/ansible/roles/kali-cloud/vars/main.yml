@@ -91,6 +91,8 @@ kali_git_repositories:
     dest: gcp-iam-collector
   - repo: https://github.com/RhinoSecurityLabs/GCPBucketBrute.git
     dest: gcpbucketbrute
+  - repo: https://github.com/initstring/cloud_enum.git
+    dest: cloud_enum
 
 kali_install_python3:
   - cloudmapper
@@ -98,6 +100,7 @@ kali_install_python3:
   - weirdAAL
   - scoutsuite
   - gcpbucketbrute
+  - cloud_enum
 
 kali_install_python2:
   - cs-suite
