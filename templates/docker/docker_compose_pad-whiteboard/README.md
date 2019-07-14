@@ -12,5 +12,6 @@ alias collab_down="docker-compose -f /Users/x/docker_compose_pad-whiteboard/dock
 
 ## How to access the services
 
+* `127.0.0.1:3000`: Draw.io
 * `127.0.0.1:3001`: Pad
 * `127.0.0.1:3002`: Whiteboard
