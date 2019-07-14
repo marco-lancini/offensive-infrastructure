@@ -74,40 +74,6 @@ services:
         depends_on:
             - wekandb
 
-    # --------------------------------------------------------------------------------------
-    # BOOKSTACK - https://github.com/solidnerd/docker-bookstack
-    # --------------------------------------------------------------------------------------
-    mysql:
-        container_name: bookstack-db
-        image: mysql:5.7.21
-        environment:
-            - MYSQL_ROOT_PASSWORD=secret
-            - MYSQL_DATABASE=bookstack
-            - MYSQL_USER=bookstack
-            - MYSQL_PASSWORD=secret
-        volumes:
-            - /docker/data/wekan_bookstack/mysql-data:/var/lib/mysql
-        networks:
-            - wekan-tier
-
-    bookstack:
-        container_name: bookstack-app
-        image: solidnerd/bookstack:0.21.0
-        depends_on:
-            - mysql
-        environment:
-            - DB_HOST=mysql:3306
-            - DB_DATABASE=bookstack
-            - DB_USERNAME=bookstack
-            - DB_PASSWORD=secret
-        volumes:
-            - /docker/data/wekan_bookstack/bookstack_uploads:/var/www/bookstack/public/uploads
-            - /docker/data/wekan_bookstack/bookstack_storage-uploads:/var/www/bookstack/public/storage
-        ports:
-            - 9002:80
-        networks:
-            - wekan-tier
-
 # ----------------------------------------------------------------------------------------
 # NETWORKS
 # ----------------------------------------------------------------------------------------

@@ -24,18 +24,19 @@ This folder contains some building blocks.
 
 | Folder                            | Description |
 | --------------------------------- | ----------- |
-| `docker_ansible_worker`           | Image for Ansible. Published on [Docker Hub](https://cloud.docker.com/u/marcolancini/repository/list) |
-| `docker_compose_clair`            | Spin up `Clair`, alongside `Postgres` and `Klar`, to scan Docker images for security vulnerabilities |
-| `docker_compose_django`           | Django setup with `Postgres` (database), `Redis` (cache), and `nginx` (proxy) |
-| `docker_compose_flask`            | Flask setup  |
-| `docker_compose_nginx-proxy`      | Nginx-proxy setup |
-| `docker_compose_wekan-bookstack`  | Local setup for Wekan and Bookstack |
-| `docker_compose_wikijs`           | Local setup for WikiJS |
-| `docker_go_dev`                   | Development image for Golang. Published on [Docker Hub](https://cloud.docker.com/u/marcolancini/repository/list)  |
+| `admin_collab_draw-pad-whiteboard`| Local setup for Draw.io, Pad, and Whiteboard |
+| `admin_wekan`                     | Local setup for Wekan |
+| `admin_wikijs`                    | Local setup for WikiJS |
+| `dev_go`                          | Development image for Golang. Published on [Docker Hub](https://cloud.docker.com/u/marcolancini/repository/list)  |
 | `docker_kali`                     | Image for kali. Published on [Docker Hub](https://cloud.docker.com/u/marcolancini/repository/list) |
-| `docker_nomad`                    | Image for Nomad. Published on [Docker Hub](https://cloud.docker.com/u/marcolancini/repository/list)  |
-| `docker_python_dev`               | Development image for Python2/3. Published on [Docker Hub](https://cloud.docker.com/u/marcolancini/repository/list) |
+| `dev_python`                      | Development image for Python2/3. Published on [Docker Hub](https://cloud.docker.com/u/marcolancini/repository/list) |
 | `docker_vault`                    | [Docker + Consul + Vault](https://github.com/marco-lancini/docker_vault) |
+| `ops_ansible-worker`              | Image for Ansible. Published on [Docker Hub](https://cloud.docker.com/u/marcolancini/repository/list) |
+| `ops_clair`                       | Spin up `Clair`, alongside `Postgres` and `Klar`, to scan Docker images for security vulnerabilities |
+| `ops_nomad`                       | Image for Nomad. Published on [Docker Hub](https://cloud.docker.com/u/marcolancini/repository/list)  |
+| `web_django`                      | Django setup with `Postgres` (database), `Redis` (cache), and `nginx` (proxy) |
+| `web_flask`                       | Flask setup  |
+| `web_nginx-proxy`                 | Nginx-proxy setup |
 
 
 
