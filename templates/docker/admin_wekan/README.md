@@ -13,3 +13,18 @@
 alias wekan_up="docker-compose -f /Users/x/docker_compose_wekan-bookstack/docker-compose.yml up"
 alias wekan_down="docker-compose -f /Users/x/docker_compose_wekan-bookstack/docker-compose.yml down"
 ```
+
+## Wekan JSON -> CSV Converter
+
+In addition, the `json-to-csv.py` script will parse a JSON export of a Wekan board and produce a CSV file containing, for every card:
+* swimlane
+* list
+* title
+* description (with checklists)
+* labels
+* user
+* members
+* created_at
+* last_activity
+
+Usage: `convert.py -i <input json file>`
