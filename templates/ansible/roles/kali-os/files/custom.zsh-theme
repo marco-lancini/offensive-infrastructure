@@ -2,26 +2,33 @@
 
 # Colours
 eval col_grey='$FG[240]'
-eval col_orange='$FG[202]'
+eval col_orange='$FG[214]'
 eval col_yellow='$FG[190]'
-eval col_blue='$FG[110]'
+eval col_blue='$FG[075]'
+eval col_pastel_blue='$FG[153]'
+eval col_pastel_gold='$FG[143]'
+eval col_pastel_brown='$FG[138]'
 eval col_gold='$FG[100]'
-eval col_main='$FG[110]'
-eval col_secondary='$FG[100]'
+eval col_forest='$FG[101]'
+eval col_green='$FG[034]'
+
+local col_path='${col_forest}'
+local col_ip='${col_pastel_brown}'
+local col_git='${col_pastel_blue}'
 
 # Define prompts
-local current_dir='%{$terminfo[bold]${col_main}%}%~%{$reset_color%}'
-local cur_ip="`ifconfig | grep 'inet'| grep -Ev '(127.0.0.1|inet6)' | head -1 | awk '{print $2}'`"
+local current_dir='%~%'
+local cur_ip="[`ifconfig | grep 'inet'| grep -Ev '(127.0.0.1|inet6)' | head -1 | awk '{print $2}'`]"
 local time="`date  +"%d-%b-%y %T"`"
 local user_host='%n@%m'
 
-PREPROMPT='%{${col_orange}%}[${user_host} - ${cur_ip}] ${col_yellow}${time}%{$reset_color%}'
-PROMPT="${PREPROMPT}%(?.${col_main}.%F{red}) ❯%f " # Display a red prompt char on failure
+PROMPT="%(?.${col_main}.%F{red})❯%f " # Display a red prompt char on failure
 
 # Output additional information about paths, repos and user
 precmd() {
-    print -P "\n${current_dir}  %{${col_secondary}%}$(kube_ps1) %{${col_third}%}$(git_prompt_info)%{$reset_color%}$(git_prompt_status)%{$reset_color%}$(git_prompt_ahead)"
+    print -P "\n%{$terminfo[bold]%{${col_path}%}[${user_host}:${current_dir} ]%{$reset_color%} $terminfo[bold] %{${col_ip}%}${cur_ip}%{$reset_color%}  $(kube_ps1)  %{${col_git}%}$(git_prompt_info)$(git_prompt_status)$(git_prompt_ahead)"
 }
+
 
 # GIT status
 ZSH_THEME_GIT_PROMPT_PREFIX=" ☁  "
