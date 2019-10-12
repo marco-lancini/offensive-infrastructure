@@ -25,6 +25,7 @@ This folder contains some building blocks.
 | Folder                            | Description |
 | --------------------------------- | ----------- |
 | `admin_collab_draw-pad-whiteboard`| Local setup for Draw.io, Pad, and Whiteboard |
+| `admin_raneto`                    | Local setup for Raneto (Wiki) |
 | `admin_wekan`                     | Local setup for Wekan |
 | `admin_wikijs`                    | Local setup for WikiJS |
 | `dev_go`                          | Development image for Golang. Published on [Docker Hub](https://cloud.docker.com/u/marcolancini/repository/list)  |
