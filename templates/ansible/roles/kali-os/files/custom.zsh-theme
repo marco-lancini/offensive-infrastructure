@@ -22,23 +22,25 @@ local cur_ip="[`ifconfig | grep 'inet'| grep -Ev '(127.0.0.1|inet6)' | head -1 |
 local time="`date  +"%d-%b-%y %T"`"
 local user_host='%n@%m'
 
-PROMPT="%(?.${col_main}.%F{red})❯%f " # Display a red prompt char on failure
+
 
 # Output additional information about paths, repos and user
 precmd() {
-    print -P "\n%{$terminfo[bold]%{${col_path}%}[${user_host}:${current_dir} ]%{$reset_color%} $terminfo[bold] %{${col_ip}%}${cur_ip}%{$reset_color%}  $(kube_ps1)  %{${col_git}%}$(git_prompt_info)$(git_prompt_status)$(git_prompt_ahead)"
+    print -P "\n%{$terminfo[bold]%{${col_path}%}[${user_host}:${current_dir} ]%{$reset_color%} $terminfo[bold] %{${col_ip}%}${cur_ip}%{$reset_color%}  $(kube_ps1)  %{${col_git}%}$(git_super_status)"
 }
+
+PROMPT="%(?.${col_main}.%F{red})❯%f " # Display a red prompt char on failure
 
 
 # GIT status
-ZSH_THEME_GIT_PROMPT_PREFIX=" ☁  "
-ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%}"
+ZSH_THEME_GIT_PROMPT_PREFIX="(   "
+ZSH_THEME_GIT_PROMPT_SUFFIX="%{$reset_color%})"
 #ZSH_THEME_GIT_PROMPT_DIRTY="%{$fg[yellow]%} ☂"
 #ZSH_THEME_GIT_PROMPT_UNTRACKED="%{$fg[cyan]%} ✭"
 #ZSH_THEME_GIT_PROMPT_CLEAN="%{$fg[green]%} ☀"
-ZSH_THEME_GIT_PROMPT_ADDED="%{$fg[cyan]%} ✚"
-ZSH_THEME_GIT_PROMPT_MODIFIED="%{$fg[yellow]%} ⚡"
-ZSH_THEME_GIT_PROMPT_DELETED="%{$fg[red]%} ✖"
-ZSH_THEME_GIT_PROMPT_RENAMED="%{$fg[blue]%} ➜"
-ZSH_THEME_GIT_PROMPT_UNMERGED="%{$fg[magenta]%} ♒"
-ZSH_THEME_GIT_PROMPT_AHEAD="%{$fg[blue]%} 𝝙"
+#ZSH_THEME_GIT_PROMPT_ADDED="%{$fg[cyan]%} ✚"
+#ZSH_THEME_GIT_PROMPT_MODIFIED="%{$fg[yellow]%} ⚡"
+#ZSH_THEME_GIT_PROMPT_DELETED="%{$fg[red]%} ✖"
+#ZSH_THEME_GIT_PROMPT_RENAMED="%{$fg[blue]%} ➜"
+#ZSH_THEME_GIT_PROMPT_UNMERGED="%{$fg[magenta]%} ♒"
+#ZSH_THEME_GIT_PROMPT_AHEAD="%{$fg[blue]%} 𝝙"
