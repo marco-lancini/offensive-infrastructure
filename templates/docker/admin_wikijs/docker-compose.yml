@@ -1,40 +1,40 @@
 version: "3"
 services:
-  # wikidb:
-  #   image: postgres:9-alpine
-  #   environment:
-  #     POSTGRES_DB: wiki
-  #     POSTGRES_PASSWORD: wikijsrocks
-  #     POSTGRES_USER: wikijs
-  #   logging:
-  #     driver: "none"
-  #   volumes:
-  #     - ./data/postgres_data:/var/lib/postgresql/data
-  #   expose:
-  #     - 5432
-  #   networks:
-  #     - wikinet
+  wikidb:
+    image: postgres:11-alpine
+    environment:
+      POSTGRES_DB: wiki
+      POSTGRES_PASSWORD: wikijsrocks
+      POSTGRES_USER: wikijs
+    logging:
+      driver: "none"
+    volumes:
+      - ./data/postgres_data:/var/lib/postgresql/data
+    expose:
+      - 5432
+    networks:
+      - wikinet
 
   wikijs:
-    image: requarks/wiki:beta
+    image: requarks/wiki:2
     depends_on:
       - wikidb
     links:
       - wikidb
     environment:
-      # DB_TYPE: postgres
-      # DB_HOST: db
-      # DB_PORT: 5432
-      # DB_USER: wikijs
-      # DB_PASS: wikijsrocks
-      # DB_NAME: wiki
+      DB_TYPE: postgres
+      DB_HOST: db
+      DB_PORT: 5432
+      DB_USER: wikijs
+      DB_PASS: wikijsrocks
+      DB_NAME: wiki
       DB_TYPE: sqlite
     networks:
       - wikinet
     ports:
       - "3000:3000"
     volumes:
-      - ./config.yml:/wiki/config.yml
+      # - ./config.yml:/wiki/config.yml
       - ./data/:/etc/wiki/db/
 
 networks:
