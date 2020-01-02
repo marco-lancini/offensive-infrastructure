@@ -1,4 +1,0 @@
----
-domain: domain.com
-ssl_key: /etc/ssl/cert.key
-ssl_crt: /etc/ssl/cert.crt

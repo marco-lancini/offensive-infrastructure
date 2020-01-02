@@ -12,12 +12,12 @@
 
 - name: Add Docker apt key
   apt_key:
-    url: https://download.docker.com/linux/debian/gpg
+    url: https://download.docker.com/linux/{{ ubuntu }}/gpg
     state: present
 
 - name: Add Docker apt repository
   apt_repository:
-    repo: deb [arch=amd64] https://download.docker.com/linux/debian stretch stable
+    repo: deb [arch=amd64] https://download.docker.com/linux/{{ ubuntu }} {{ version }} stable
     state: present
 
 - name: Update packages
