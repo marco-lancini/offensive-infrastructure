@@ -23,7 +23,7 @@ dev_apt:
   - unace
   - unrar
   - rar
-  - openvpn 
+  - openvpn
   - tree
   # ---------- DEV TOOLS
   - git
@@ -34,6 +34,7 @@ dev_apt:
   - pwgen
   - libreadline-dev
   - lib32ncurses5-dev
+  - bat
   # ---------- COMPILING LIBRARIES
   - gcc
   - g++
@@ -43,10 +44,9 @@ dev_apt:
   - dpkg-dev
   - libssl-dev
 
-
 # dev_pip:
-  # - example
-  
+# - example
+
 #dev_easy_install:
 #  # - example
 
@@ -54,26 +54,26 @@ dev_apt:
 #   - package: example
 #     state: latest
 
-# dev_go:
-  #- github.com/marco-lancini/goscan
+dev_go:
+  - github.com/charmbracelet/glow
 
 # dev_go_build:
-  # - git_name: gobuster
-    # go_folder: /root/go/src/github.com/OJ/gobuster/
+# - git_name: gobuster
+# go_folder: /root/go/src/github.com/OJ/gobuster/
 
 # dev_git_repositories:
 #   - repo: https://github.com/arthepsy/ssh-audit.git
 #     dest: "ssh-audit"
 
 # dev_shortcuts:
-  # - example
+# - example
 
 # dev_binary:
-  # - url: https://raw.githubusercontent.com/raesene/TestingScripts/master/snmpv3enum.rb
-  #   dest: "{{ tools_dir }}/snmpv3enum/snmpv3enum.rb"
+# - url: https://raw.githubusercontent.com/raesene/TestingScripts/master/snmpv3enum.rb
+#   dest: "{{ tools_dir }}/snmpv3enum/snmpv3enum.rb"
 
 # dev_deb:
-  # - /tmp/libssl1.0.0_1.0.1t-1+deb7u4_amd64.deb
+# - /tmp/libssl1.0.0_1.0.1t-1+deb7u4_amd64.deb
 
 # dev_tars:
 #   - src: https://labs.portcullis.co.uk/download/rdp-sec-check-0.9.tgz
@@ -81,7 +81,6 @@ dev_apt:
 
 dev_config:
   - src: "emacs"
-    dest: "/root/.emacs"
-
+    dest: "~/.emacs"
 # dev_bash:
 #   - example
