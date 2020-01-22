@@ -2,8 +2,6 @@
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-#export ZSH=/Users/marco/.oh-my-zsh
-#export ZSH=/root/.oh-my-zsh
 export ZSH={{ home_dir }}/.oh-my-zsh
 
 # Set name of the theme to load. Optionally, if you set this to "random"
@@ -23,12 +21,6 @@ ZSH_THEME="custom"
 
 # Uncomment the following line to change how often to auto-update (in days).
 # export UPDATE_ZSH_DAYS=13
-
-# Uncomment the following line to disable colors in ls.
-# DISABLE_LS_COLORS="true"
-
-# Uncomment the following line to disable auto-setting terminal title.
-# DISABLE_AUTO_TITLE="true"
 
 # Uncomment the following line to enable command auto-correction.
 # ENABLE_CORRECTION="true"
@@ -64,11 +56,11 @@ source $ZSH/oh-my-zsh.sh
 # export LANG=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
-# if [[ -n $SSH_CONNECTION ]]; then
-#   export EDITOR='vim'
-# else
-#   export EDITOR='mvim'
-# fi
+if [[ -n $SSH_CONNECTION ]]; then
+  export EDITOR='emacs'
+else
+  export EDITOR='emacs'
+fi
 
 # Compilation flags
 # export ARCHFLAGS="-arch x86_64"
@@ -76,55 +68,71 @@ source $ZSH/oh-my-zsh.sh
 # ssh
 # export SSH_KEY_PATH="~/.ssh/rsa_id"
 
-# Set personal aliases, overriding those provided by oh-my-zsh libs,
-# plugins, and themes. Aliases can be placed here, though oh-my-zsh
-# users are encouraged to define aliases within the ZSH_CUSTOM folder.
-# For a full list of active aliases, run `alias`.
-#
-# Example aliases
-# alias zshconfig="mate ~/.zshrc"
-# alias ohmyzsh="mate ~/.oh-my-zsh"
-# ------------ CUSTOM
+# ------------------------------------------------------------------------------
+#  CUSTOM
+# ------------------------------------------------------------------------------
 # Setting history length
-HISTSIZE=5000
+HISTSIZE=1000000
 HISTFILESIZE=5000
 HISTTIMEFORMAT="%d/%m/%y %T "
 
-# Some more ls aliases
-alias la='ls -A'
-alias ls='clear && ls -lhG --color=auto'
+# Individual history per terminal
+unsetopt inc_append_history
+unsetopt share_history
 
-# Other Aliases
+# Aliases
+source ~/.bash_aliases
 function cd {
     builtin cd "$@" && clear && ls -lh --color=auto
 }
+alias la='ls -A'
+alias ls='clear && ls -lhG --color=auto'
 alias ..="cd .."
 alias ee="exit"
 alias renew='/etc/init.d/networking restart'
 alias emacs="emacs -nw"
-#alias cat='bat'
 alias bat='bat --theme TwoDark'
-alias wwwroot="cd /var/www/html/"
+alias lock="gnome-screensaver-command -l"
+alias glog="git log --graph --decorate --oneline"
+alias glog_full="git log --graph --decorate --abbrev-commit"
 alias ungit='find . -type d -name ".git" | while read dir ; do sh -c "cd $dir/../ && echo \"\nGIT STATUS IN ${dir//\.\
 git/}\" && git status -s && git cherry -v" ; done'
 
-# Python config
+# Python
 export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
 export PYTHONSTARTUP=/root/.pythonstartup
 export PIPENV_VENV_IN_PROJECT=true
 
+# Go
+export GOPATH=~/go/
+
+# Plz
+source ~/.profile
+source <(plz --completion_script)
+
+# CSPs
+autoload -U compinit && compinit
+source /usr/lib/google-cloud-sdk/completion.bash.inc
+source /usr/local/bin/aws_zsh_completer.sh
+
 # Kubernetes
-alias k="kubectl"
 source <(kubectl completion zsh)
 source ~/.oh-my-zsh/custom/kube-ps1.sh
-export PATH="${KREW_ROOT:-$HOME/.krew}/bin:$PATH"
-
-
-# Aliases
-source ~/.bash_aliases
+alias k="kubectl"
+alias krew="kubectl-krew"
+alias debug-shell="kubectl run -it --rm --restart=Never kube-shell --image alpine -- sh"
+export KUBE_PS1_SYMBOL_DEFAULT=" "
+export KUBE_PS1_SYMBOL_COLOR="white"
+export KUBE_PS1_CTX_COLOR="magenta"
+export KUBE_PS1_NS_COLOR="green"
+export PATH="${KREW_ROOT:-$HOME/.krew}/bin:~/go/bin:$PATH"
+export KUBECONFIG=~/.kube/config
+for file in ~/.kube/configs/*.yaml; do
+    export KUBECONFIG=$KUBECONFIG:$file
+done
 
 # Docker compose
-alias wekan_up="docker-compose -f /Users/x/Documents/Software/wekan_bookstack/_docker_compose_wekan-bookstack/docker-compose.yml up"
-alias wekan_down="docker-compose -f /Users/x/Documents/Software/wekan_bookstack/_docker_compose_wekan-bookstack/docker-compose.yml down"
-alias collab_up="docker-compose -f /Users/x/Documents/Software/docker_compose_pad-whiteboard/docker-compose.yml up"
-alias collab_down="docker-compose -f /Users/x/Documents/Software/docker_compose_pad-whiteboard/docker-compose.yml down"
+alias wekan_up="docker-compose -f /opt/admin_wekan/docker-compose.yml up -d"
+alias wekan_down="docker-compose -f /opt/admin_wekan/docker-compose.yml down"
+alias wiki_up="docker-compose -f /opt/admin_raneto/docker-compose.yaml up -d"
+alias wiki_down="docker-compose -f /opt/admin_raneto/docker-compose.yaml down"
