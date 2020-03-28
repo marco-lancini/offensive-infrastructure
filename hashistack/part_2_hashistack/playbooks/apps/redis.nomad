@@ -15,7 +15,7 @@ job "example" {
         image = "redis:3.2"
         network_mode = "bridge"
         port_map {
-          sampleservicedbport = 6379
+          sampleservicedb_port = 6379
         }
         labels {
           group = "label_db"
