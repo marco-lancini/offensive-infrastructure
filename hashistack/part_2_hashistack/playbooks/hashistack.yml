@@ -11,9 +11,10 @@
       consul_domain: "consul"
       consul_recursors: ['1.1.1.1', '1.0.0.1']
       # CONSTANTS
-      consul_client_address: "0.0.0.0" 
+      consul_client_address: "0.0.0.0"
       consul_dnsmasq_enable: yes
       consul_acl_master_token_display: yes
+      vault_azurekeyvault: no
 
 
 - hosts: vault_instances

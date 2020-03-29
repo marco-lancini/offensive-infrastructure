@@ -17,3 +17,6 @@ server01.consul
 
 [nomad_deployer]
 server02.consul
+
+[nomad_instances]
+server01.consul
