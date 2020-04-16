@@ -41,7 +41,7 @@
   },
   "dependencies": {
     "body-parser": "1.19.0",
-    "bootstrap": "4.3.1",
+    "bootstrap": "4.4.1",
     "bootstrap-rtl": "3.3.4",
     "commander": "3.0.2",
     "cookie-parser": "1.4.4",
