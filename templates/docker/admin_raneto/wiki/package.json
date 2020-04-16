@@ -54,7 +54,7 @@
     "glob": "7.1.4",
     "highlightjs": "9.12.0",
     "hogan-express": "0.5.2",
-    "jquery": "3.4.1",
+    "jquery": "3.5.0",
     "jquery-backstretch": "2.1.18",
     "js-yaml": "3.13.1",
     "lunr": "2.3.7",
