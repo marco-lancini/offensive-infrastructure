@@ -44,7 +44,7 @@
     "bootstrap": "4.4.1",
     "bootstrap-rtl": "3.3.4",
     "commander": "3.0.2",
-    "cookie-parser": "1.4.4",
+    "cookie-parser": "1.4.5",
     "debug": "4.1.1",
     "express": "4.17.1",
     "express-session": "1.16.2",
