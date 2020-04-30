@@ -57,7 +57,7 @@
     "jquery": "3.5.0",
     "jquery-backstretch": "2.1.18",
     "js-yaml": "3.13.1",
-    "lunr": "2.3.7",
+    "lunr": "2.3.8",
     "lunr-languages": "1.4.0",
     "markdown-it": "10.0.0",
     "markdown-toc": "1.2.0",
