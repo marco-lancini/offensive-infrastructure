@@ -28,6 +28,7 @@ dev_apt:
   # ---------- DEV TOOLS
   - git
   - emacs
+  - micro
   - rsync
   - curl
   - tmux
