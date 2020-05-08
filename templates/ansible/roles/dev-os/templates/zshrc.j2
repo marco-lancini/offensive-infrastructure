@@ -57,9 +57,9 @@ source $ZSH/oh-my-zsh.sh
 
 # Preferred editor for local and remote sessions
 if [[ -n $SSH_CONNECTION ]]; then
-  export EDITOR='emacs'
+  export EDITOR='micro'
 else
-  export EDITOR='emacs'
+  export EDITOR='micro'
 fi
 
 # Compilation flags
@@ -121,10 +121,11 @@ source ~/.oh-my-zsh/custom/kube-ps1.sh
 alias k="kubectl"
 alias krew="kubectl-krew"
 alias debug-shell="kubectl run -it --rm --restart=Never kube-shell --image alpine -- sh"
-export KUBE_PS1_SYMBOL_DEFAULT=" "
-export KUBE_PS1_SYMBOL_COLOR="white"
+export KUBE_PS1_PREFIX="["
+export KUBE_PS1_SUFFIX="]"
+export KUBE_PS1_SEPARATOR="|"
 export KUBE_PS1_CTX_COLOR="magenta"
-export KUBE_PS1_NS_COLOR="green"
+export KUBE_PS1_NS_COLOR="cyan"
 export PATH="${KREW_ROOT:-$HOME/.krew}/bin:~/go/bin:$PATH"
 export KUBECONFIG=~/.kube/config
 for file in ~/.kube/configs/*.yaml; do
