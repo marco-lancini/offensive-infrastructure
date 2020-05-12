@@ -33,5 +33,7 @@
         "Kubernetes",
         "Minikube",
         "terraform"
-    ]
+    ],
+    "extensions.ignoreRecommendations": true,
+    "terminal.integrated.rendererType": "canvas"
 }
