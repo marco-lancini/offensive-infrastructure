@@ -45,8 +45,8 @@ dev_apt:
   - dpkg-dev
   - libssl-dev
 
-# dev_pip:
-# - example
+dev_pip:
+  - yq
 
 #dev_easy_install:
 #  # - example
