@@ -133,3 +133,8 @@
 - name: Install VSCode Extensions
   when: copy_config_done is success
   command: cat /tmp/extensions | xargs -n 1 code --install-extension
+
+- name: Install Code Server
+  when: copy_config_done is success
+  command: |
+    /opts/vscode-server/code-server-{{ CODE_SERVER_VERSION }}-linux-amd64/bin/code-server /opts/vscode-server/code-server-{{ CODE_SERVER_VERSION }}-linux-amd64/bin/ --cert --bind-addr 127.0.0.1:4063"
