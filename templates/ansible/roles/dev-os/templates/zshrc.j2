@@ -118,6 +118,8 @@ source /usr/local/bin/aws_zsh_completer.sh
 # Kubernetes
 source <(kubectl completion zsh)
 source ~/.oh-my-zsh/custom/kube-ps1.sh
+[ -f ~/.kubectl_aliases ] && source ~/.kubectl_aliases
+function kubectl() { echo "+ kubectl $@">&2; command kubectl $@; }
 alias k="kubectl"
 alias krew="kubectl-krew"
 alias debug-shell="kubectl run -it --rm --restart=Never kube-shell --image alpine -- sh"
