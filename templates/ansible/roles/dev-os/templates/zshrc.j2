@@ -111,6 +111,7 @@ source ~/.profile
 source <(plz --completion_script)
 
 # CSPs
+export AWS_SDK_LOAD_CONFIG=1
 autoload -U compinit && compinit
 source /usr/lib/google-cloud-sdk/completion.bash.inc
 source /usr/local/bin/aws_zsh_completer.sh
