@@ -36,6 +36,7 @@ dev_apt:
   - libreadline-dev
   - lib32ncurses5-dev
   - bat
+  - git-delta
   # ---------- COMPILING LIBRARIES
   - gcc
   - g++
@@ -83,5 +84,7 @@ dev_go:
 dev_config:
   - src: "emacs"
     dest: "~/.emacs"
+  - src: "gitconfig"
+    dest: "~/.gitconfig"
 # dev_bash:
 #   - example
