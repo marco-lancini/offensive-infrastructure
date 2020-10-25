@@ -36,14 +36,4 @@ This folder contains some building blocks.
 | `ops_ansible-worker`               | Image for Ansible. Published on [Docker Hub](https://cloud.docker.com/u/marcolancini/repository/list)               |
 | `ops_clair`                        | Spin up `Clair`, alongside `Postgres` and `Klar`, to scan Docker images for security vulnerabilities                |
 | `ops_nomad`                        | Image for Nomad. Published on [Docker Hub](https://cloud.docker.com/u/marcolancini/repository/list)                 |
-| `web_django`                       | Django setup with `Postgres` (database), `Redis` (cache), and `nginx` (proxy)                                       |
-| `web_flask`                        | Flask setup                                                                                                         |
 | `web_nginx-proxy`                  | Nginx-proxy setup                                                                                                   |
-
-
-
-## TERRAFORM
-
-| Folder          | Description                             |
-| --------------- | --------------------------------------- |
-| `terraform_vpc` | Terraform template for a full VPC setup |
