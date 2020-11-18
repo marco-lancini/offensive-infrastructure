@@ -37,6 +37,7 @@ dev_apt:
   - lib32ncurses5-dev
   - bat
   - git-delta
+  - dog
   # ---------- COMPILING LIBRARIES
   - gcc
   - g++
