@@ -3,7 +3,7 @@ FROM alpine:latest
 # Install dependencies
 RUN apk update && \
     apk upgrade &&  \
-    apk add --no-cache --update ansible bash libffi-dev py-netaddr openssh sshpass zip
+    apk add --no-cache --update ansible bash libffi-dev py-netaddr py3-pip py3-setuptools openssh sshpass zip
 # Initialize
 RUN mkdir -p /etc/ansible
 RUN mkdir -p /playbooks
